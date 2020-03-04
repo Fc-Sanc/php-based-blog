@@ -1,2 +1,2 @@
 # php-based-blog
- thanks to I♥PHP
+ thanks to <kbd>I♥PHP</kbd>
