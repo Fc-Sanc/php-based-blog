@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4e8e546-aed4-43c4-aa05-bd4a0599d178" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/head.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/install.php" beforeDir="false" afterPath="$PROJECT_DIR$/install.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/comment_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/comment_form.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +50,13 @@
     </expand>
     <select />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -62,6 +74,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/A-Pure-PHP-Based-Blog" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -87,7 +100,7 @@
       <updated>1582900554661</updated>
       <workItem from="1582900557150" duration="809000" />
       <workItem from="1583286504554" duration="38000" />
-      <workItem from="1583286598056" duration="20065000" />
+      <workItem from="1583286598056" duration="20658000" />
     </task>
     <task id="LOCAL-00001" summary="Complete login system">
       <created>1583310604191</created>
@@ -103,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583310653147</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ignore test 02">
+      <created>1583311469581</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1583311469581</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,7 +155,8 @@
       <path value="$PROJECT_DIR$/A-Pure-PHP-Based-Blog" />
     </ignored-roots>
     <MESSAGE value="Complete login system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete login system" />
+    <MESSAGE value="ignore test 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="ignore test 02" />
   </component>
   <component name="WindowStateProjectService">
     <state x="349" y="67" key="#CLI_Interpreters" timestamp="1583286530724">
@@ -158,10 +179,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1583294323098" />
-    <state x="323" y="0" key="CommitChangelistDialog2" timestamp="1583310652038">
+    <state x="323" y="0" key="CommitChangelistDialog2" timestamp="1583311468636">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="323" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583310652038" />
+    <state x="323" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583311468636" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1583309617311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -170,10 +191,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="166" y="120" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583294317880" />
-    <state x="956" y="331" key="NewPhpFileDialog" timestamp="1583309645476">
+    <state x="956" y="331" key="NewPhpFileDialog" timestamp="1583311984512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="956" y="331" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1583309645476" />
+    <state x="956" y="331" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1583311984512" />
     <state x="611" y="49" key="RollbackChangesDialog" timestamp="1583309575592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -182,18 +203,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="300" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583309130464" />
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1583311305002">
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1583311474436">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583311305002" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583311474436" />
     <state x="530" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583310469712">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="530" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1583310469712" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1583300566814">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1583311989281">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1583300566814" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1583311989281" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1583310856617">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
