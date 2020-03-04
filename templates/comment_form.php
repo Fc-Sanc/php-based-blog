@@ -18,7 +18,7 @@
 
 <h3>Add your comment</h3>
 
-<form method="post">
+<form method="post" class="comment-form user-form">
     <p>
         <label for="comment-name">
             Name:

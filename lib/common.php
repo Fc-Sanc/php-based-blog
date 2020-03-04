@@ -71,6 +71,25 @@ function getSqlDateForNow()
 }
 
 /**
+ * Gets a list of posts in reverse order
+ *
+ * @param PDO $pdo
+ * @return array
+ */
+function getAllPosts(PDO $pdo)
+{
+    $stmt = $pdo->query(
+        'SELECT id, title, created_at, body 
+      FROM post ORDER BY created_at DESC'
+    );
+    if ($stmt === false) {
+        throw new Exception('There was a problem running this query');
+    }
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
  * Converts unsafe text to safe, paragraphed, HTML
  *
  * @param string $text
@@ -178,4 +197,31 @@ function getAuthUser()
 function isLoggedIn()
 {
     return isset($_SESSION['logged_in_username']);
+}
+
+/**
+ * Looks up the user_id for the current auth user
+ *
+ * @param PDO $pdo
+ * @return mixed|null
+ */
+function getAuthUserId(PDO $pdo)
+{
+    // Reply with null if there is no logged-in user
+    if (!isLoggedIn()) {
+        return null;
+    }
+
+    $sql = "
+        SELECT id FROM user
+            WHERE username = :username
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        array(
+            'username' => getAuthUser()
+        )
+    );
+
+    return $stmt->fetchColumn();
 }
