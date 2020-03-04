@@ -5,7 +5,7 @@ thanks to <kbd>**I♥PHP**</kbd>
 * Setup apache2.4 [download here](http://httpd.apache.org/download.cgi) 
 or use **apt** to install easily.
 ```shell script
-apt install apache2
+apt update && apt install apache2
 ```
 then do necessarily configuration.
 
