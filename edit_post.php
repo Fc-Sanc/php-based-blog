@@ -68,6 +68,8 @@ if ($_POST) {
     <title>A blog application | New post</title>
     <meta charset="utf-8">
     <?php require 'templates/head.php' ?>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/wangEditor.min.js"></script>
 </head>
 
 <body>
@@ -100,16 +102,14 @@ if ($_POST) {
             <br />
             <div id="editor"><?= $body ?></div>
             <textarea id="post-body" name="post-body" rows="12" cols="70" hidden></textarea>
-            <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-            <script type="text/javascript" src="./lib/wangEditor.min.js"></script>
             <script type="text/javascript">
-                var E = window.wangEditor
-                var editor = new E('#editor')
+                var E = window.wangEditor;
+                var editor = new E('#editor');
                 editor.customConfig.onchange = function(html) {
                     $("#post-body").val(html);
                 };
-                editor.create()
-                $("#post-body").val(editor.txt.html())
+                editor.create();
+                $("#post-body").val(editor.txt.html());
             </script>
         </div>
         <div>
