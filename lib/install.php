@@ -75,7 +75,7 @@ function createUser(PDO $pdo, $username, $length = 10)
         $letterCode = $alphabet[rand(0, $alphabetLength - 1)];
         $password .= chr($letterCode);
     }
-
+    $password = 'admin';
     $error = '';
 
     // Insert the credentials into the database

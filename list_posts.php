@@ -4,6 +4,10 @@ require_once 'lib/list_posts.php';
 
 session_start();
 
+// Connect to the database, run a query
+$pdo = getPDO();
+$posts = getAllPosts($pdo);
+
 // Don't let non-auth users see this screen
 if (!isLoggedIn()) {
     redirectAndExit('index.php');
@@ -15,15 +19,11 @@ if ($_POST) {
         $keys = array_keys($delete_response);
         $delete_post_id = $keys[0];
         if ($delete_post_id) {
-            deletePost(getPDO(), $delete_post_id);
+            deletePost($pdo, $delete_post_id);
             redirectAndExit('list_posts.php');
         }
     }
 }
-
-// Connect to the database, run a query
-$pdo = getPDO();
-$posts = getAllPosts($pdo);
 
 ?>
 <!DOCTYPE html>
@@ -51,7 +51,7 @@ $posts = getAllPosts($pdo);
                             <?php echo convertSqlDate($post['created_at']) ?>
                         </td>
                         <td>
-                            <a href="edit_post.php?post_id=<?php echo post['id'] ?>">Edit</a>
+                            <a href="edit_post.php?post_id=<?php echo $post['id'] ?>">Edit</a>
                         </td>
                         <td>
                             <input

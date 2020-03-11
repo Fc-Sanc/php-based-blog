@@ -23,16 +23,26 @@ if (!$row) {
 
 $errors = null;
 if ($_POST) {
-    $comment_data = array(
-        'name' => $_POST['comment-name'],
-        'website' => $_POST['comment-website'],
-        'text' => $_POST['comment-text'],
-    );
-    $errors = addCommentToPost($pdo, $post_id, $comment_data);
+    switch ($_GET['action']) {
+        case 'add-comment':
+            $comment_data = array(
+                'name' => $_POST['comment-name'],
+                'website' => $_POST['comment-website'],
+                'text' => $_POST['comment-text'],
+            );
+            $errors = handleAddComment($pdo, $post_id, $comment_data);
 
-    // If there are no errors, redirect back to self redisplay
-    if (!$errors) {
-        redirectAndExit('view_post.php?post_id=' . $post_id);
+            break;
+        case 'delete-comment':
+            // Don't do anything if the user is not authorised
+            if (isLoggedIn()) {
+                $delete_response = $_POST['delete-comment'];
+                $keys = array_keys($delete_response);
+                $delete_comment_id = $keys[0];
+                deleteComment($pdo, $post_id, $delete_comment_id);
+                redirectAndExit('view_post.php?post_id=' . $post_id);
+            }
+            break;
     }
 } else {
     $comment_data = array(
@@ -46,48 +56,34 @@ if ($_POST) {
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>
-            A blog application |
+<head>
+    <title>
+        A blog application |
+        <?php echo htmlEscape($row['title']) ?>
+    </title>
+    <?php require 'templates/head.php' ?>
+</head>
+
+<body>
+    <?php require 'templates/title.php' ?>
+
+    <div class="post">
+        <h2>
             <?php echo htmlEscape($row['title']) ?>
-        </title>
-        <?php require 'templates/head.php' ?>
-    </head>
-
-    <body>
-        <?php require 'templates/title.php' ?>
-
-        <div class="post">
-            <h2>
-                <?php echo htmlEscape($row['title']) ?>
-            </h2>
-            <div class="date">
-                <?php echo convertSqlDate($row['created_at']) ?>
-            </div>
-            <?php // This is already escaped, so doesn't need further escaping
-            echo convertNewlinesToParagraphs($row['body']) ?>
+        </h2>
+        <div class="date">
+            <?php echo convertSqlDate($row['created_at']) ?>
         </div>
+        <?php // This is already escaped, so doesn't need further escaping
+        // echo convertNewlinesToParagraphs($row['body']) 
+        echo $row['body'] ?>
+    </div>
 
-        <div class="comment-list">
-            <h3><?php echo countCommentsForPost($pdo, $post_id) ?> comment(s)</h3>
+    <?php require 'templates/list-comments.php' ?>
 
-            <?php foreach (getCommentsForPost($pdo, $post_id) as $comment) : ?>
-                <div class="comment">
-                    <div class="comment-meta">
-                        Comment from
-                        <?php echo htmlEscape($comment['name']) ?>
-                        on
-                        <?php echo convertSqlDate($comment['created_at']) ?>
-                    </div>
-                    <div class="comment-body">
-                        <?php // This is already escaped ?>
-                        <?php echo convertNewlinesToParagraphs($comment['text']) ?>
-                    </div>
-                </div>
-            <?php endforeach ?>
-        </div>
-
-        <?php require 'templates/comment_form.php' ?>
-    </body>
+    <?php // We use $comment_data in this HTML fragment 
+    ?>
+    <?php require 'templates/comment_form.php' ?>
+</body>
 
 </html>

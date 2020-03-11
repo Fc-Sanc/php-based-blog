@@ -40,7 +40,7 @@ if ($_POST) {
     }
 
     if (!$errors) {
-//        $pdo = getPDO();
+        //        $pdo = getPDO();
         // Decide i fwe are editing or adding
         if ($post_id) {
             editPost($pdo, $title, $body, $post_id);
@@ -63,55 +63,60 @@ if ($_POST) {
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>A blog application | New post</title>
-        <?php require 'templates/head.php' ?>
-    </head>
-    <body>
-        <?php require 'templates/top_menu.php' ?>
 
-        <?php if (isset($_GET['post_id'])): ?>
-            <h1>Edit post</h1>
-        <?php else: ?>
-            <h1>New post</h1>
-        <?php endif; ?>
+<head>
+    <title>A blog application | New post</title>
+    <meta charset="utf-8">
+    <?php require 'templates/head.php' ?>
+</head>
 
-        <?php if ($errors): ?>
-            <div class="error box">
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?php echo $error ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
+<body>
+    <?php require 'templates/top_menu.php' ?>
 
-        <form method="post" class="post-form user-form">
-            <div>
-                <label for="post-title">Title:</label>
-                <input
-                        id="post-title"
-                        name="post-title"
-                        type="text"
-                        value="<?php echo htmlEscape($title) ?>"
-                />
-            </div>
-            <div>
-                <label for="post-body">Body:</label>
-                <textarea
-                        id="post-body"
-                        name="post-body"
-                        rows="12"
-                        cols="70"
-                ><?php echo htmlEscape($body) ?></textarea>
-            </div>
-            <div>
-                <input
-                        type="submit"
-                        value="Save post"
-                />
-                <a href="index.php">Cancel</a>
-            </div>
-        </form>
-    </body>
+    <?php if (isset($_GET['post_id'])) : ?>
+        <h1>Edit post</h1>
+    <?php else : ?>
+        <h1>New post</h1>
+    <?php endif; ?>
+
+    <?php if ($errors) : ?>
+        <div class="error box">
+            <ul>
+                <?php foreach ($errors as $error) : ?>
+                    <li><?php echo $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    <form method="post" class="post-form user-form">
+        <div>
+            <label for="post-title">Title:</label>
+            <input id="post-title" name="post-title" type="text" value="<?php echo htmlEscape($title) ?>" />
+        </div>
+        <div>
+            <label for="post-body">Body:</label>
+            <br />
+            <br />
+            <div id="editor"><?= $body ?></div>
+            <textarea id="post-body" name="post-body" rows="12" cols="70" hidden></textarea>
+            <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript" src="./lib/wangEditor.min.js"></script>
+            <script type="text/javascript">
+                var E = window.wangEditor
+                var editor = new E('#editor')
+                editor.customConfig.onchange = function(html) {
+                    $("#post-body").val(html);
+                };
+                editor.create()
+                $("#post-body").val(editor.txt.html())
+            </script>
+        </div>
+        <div>
+            <input type="submit" value="Save post" />
+            <a href="index.php">Cancel</a>
+        </div>
+    </form>
+</body>
+
 </html>

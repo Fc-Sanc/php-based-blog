@@ -1,6 +1,50 @@
 <?php
 
 /**
+ * @param PDO $pdo
+ * @param $post_id
+ * @param array $comment_data
+ * @return array
+ * @throws Exception
+ */
+function handleAddComment(PDO $pdo, $post_id, array $comment_data)
+{
+    $errors = addCommentToPost($pdo, $post_id, $comment_data);
+
+    // If there are no errors, redirect back to self and redisplay
+    if (!$errors) {
+        redirectAndExit('view_post.php?post_id=' . $post_id);
+    }
+
+    return $errors;
+}
+
+function deleteComment(PDO $pdo, $post_id, $comment_id)
+{
+    // The comment id on its own would suffice, but post_id is a nice extra safety check
+    $sql = "
+        DELETE FROM
+            comment
+            WHERE 
+                post_id = :post_id,
+                AND id = :comment_id
+    ";
+    $stmt = $pdo->prepare($sql);
+    if ($stmt === false) {
+        throw new Exception('There was a problem preparing this query');
+    }
+
+    $result = $stmt->execute(
+        array(
+            'post_id' => $post_id,
+            'comment_id' => $comment_id,
+        )
+    );
+
+    return $result !== false;
+}
+
+/**
  * Retrieves a single post
  *
  * @param PDO $pdo
