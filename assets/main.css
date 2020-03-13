@@ -1,135 +1,136 @@
 /* Success/error message boxes */
 .box {
-  border: 1px dotted silver;
-  border-radius: 5px;
-  padding: 4px;
+    border: 1px dotted silver;
+    border-radius: 5px;
+    padding: 4px;
 }
 
 .error {
-  background-color: #ff6666;
+    background-color: #ff6666;
 }
 
 .success {
-  background-color: #88ff88;
+    background-color: #88ff88;
 }
 
 .box ul {
-  margin: 4px;
-  padding-left: 14px;
+    margin: 4px;
+    padding-left: 14px;
 }
 
 .box ul li {
-  margin-bottom: 2px;
+    margin-bottom: 2px;
 }
 
 .install-password {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 .top-menu {
-  border: 1px dotted silver;
-  min-height: 18px;
-  padding: 4px;
-  margin-bottom: 4px;
+    border: 1px dotted silver;
+    min-height: 18px;
+    padding: 4px;
+    margin-bottom: 4px;
 }
 
 .menu-options {
-  float: right;
+    float: right;
 }
 
 h1,
 h2,
 h3 {
-  margin-top: 0;
-  margin-bottom: 8px;
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 
 body {
-  font-family: sans-serif;
-  background: url("background[1].png");
+    font-family: sans-serif;
+    background: url("background[1].png");
 }
 
 .post-synopsis {
-  padding-bottom: 8px;
-  border-bottom: 1px dotted silver;
-  margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted silver;
+    margin-bottom: 20px;
 }
 
 .post-synopsis h2,
 .post h2 {
-  color: darkblue;
+    color: darkblue;
 }
 
 .post .date,
 .post-synopsis .meta {
-  color: white;
-  background-color: grey;
-  border-radius: 7px;
-  padding: 2px;
-  display: inline;
-  font-size: 0.95em;
+    color: white;
+    background-color: grey;
+    border-radius: 7px;
+    padding: 2px;
+    display: inline;
+    font-size: 0.95em;
 }
 
 .comment .comment-meta input {
-  float: right;
+    float: right;
 }
 
 .comment .comment-meta {
-  font-size: 0.85em;
-  color: grey;
-  border-top: 1px dotted silver;
-  padding-top: 8px;
+    font-size: 0.85em;
+    color: grey;
+    border-top: 1px dotted silver;
+    padding-top: 8px;
 }
 
 .comment-body p {
-  margin: 8px 4px;
+    margin: 8px 4px;
 }
 
 .comment-list {
-  border-bottom: 1px dotted silver;
-  margin-bottom: 12px;
-  max-width: 900px;
+    border-bottom: 1px dotted silver;
+    margin-bottom: 12px;
+    max-width: 900px;
 }
 
 .comment-margin {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .user-form input,
 .user-form textarea {
-  margin: 4px;
+    margin: 4px;
 }
 
 .user-form label {
-  font-size: 0.95em;
-  margin: 6px;
-  width: 7em;
-  color: grey;
-  float: left;
-  text-align: right;
-  /* Some browsers make labels too tall, and as a result they incorrectly stack horizontally.
-        Let's reset each to the left-hand side to be sure. */
-  clear: left;
+    font-size: 0.95em;
+    margin: 6px;
+    width: 7em;
+    color: grey;
+    float: left;
+    text-align: right;
+    /* Some browsers make labels too tall, and as a result they incorrectly stack horizontally.
+          Let's reset each to the left-hand side to be sure. */
+    clear: left;
 }
 
 #post-list {
-  border-collapse: collapse;
-  border: 1px solid silver;
+    border-collapse: collapse;
+    border: 1px solid silver;
 }
 
-#post-list td {
-  padding: 8px;
+#post-list td, #post-list th {
+    padding: 8px;
+    text-align: left;
 }
 
 #post-list tbody tr:nth-child(odd) {
-  background-color: #f4f4f4;
+    background-color: #f4f4f4;
 }
 
 .w-e-text {
-  background-color: white;
+    background-color: white;
 }
 
 #editor {
-  width: 80vw;
-  margin: 0 auto;
+    width: 80vw;
+    margin: 0 auto;
 }

@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Called to handle the comment form, redirects upon success
+ *
  * @param PDO $pdo
  * @param $post_id
  * @param array $comment_data
@@ -19,6 +21,33 @@ function handleAddComment(PDO $pdo, $post_id, array $comment_data)
     return $errors;
 }
 
+/**
+ * @param PDO $pdo
+ * @param integer $post_id
+ * @param array $delete_response
+ */
+function handleDeleteComment(PDO $pdo, $post_id, array $delete_response)
+{
+    if (isLoggedIn()) {
+        $keys = array_keys($delete_response);
+        $delete_comment_id = $keys[0];
+        if ($delete_comment_id) {
+            deleteComment($pdo, $post_id, $delete_comment_id);
+        }
+
+        redirectAndExit('view_post.php?post_id=' . $post_id);
+    }
+}
+
+/**
+ * Delete the specified comment on the specified post
+ *
+ * @param PDO $pdo
+ * @param $post_id
+ * @param $comment_id
+ * @return bool
+ * @throws Exception
+ */
 function deleteComment(PDO $pdo, $post_id, $comment_id)
 {
     // The comment id on its own would suffice, but post_id is a nice extra safety check
@@ -54,7 +83,10 @@ function deleteComment(PDO $pdo, $post_id, $comment_id)
  */
 function getPostRow(PDO $pdo, $post_id)
 {
-    $stmt = $pdo->prepare('SELECT title, created_at, body FROM post WHERE id = :id');
+    $stmt = $pdo->prepare(
+        'SELECT title, created_at, body,
+            (SELECT COUNT(*) FROM comment WHERE comment.post_id = post.id) comment_count 
+        FROM post WHERE id = :id');
 
     if ($stmt === false) {
         throw new Exception('There was a problem preparing this query');

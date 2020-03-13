@@ -36,10 +36,10 @@ $notFound = isset($_GET['not-found']);
                     </h2>
                     <div class="meta">
                         <?php echo convertSqlDate($post['created_at']) ?>
-                        (<?php echo countCommentsForPost($pdo, $post['id']) ?> comments)
+                        (<?= $post['comment_count'] ?> comments)
                     </div>
                     <p>
-                        <?php echo substr(htmlEscape($post['body']), 0, strpos(htmlEscape($post['body']), "\n")) . '...' ?>
+                        <?php echo getPostHead($post['body']) . '...' ?>
                     </p>
                     <div class="post-controls">
                         <a href="view_post.php?post_id=<?php echo $post['id'] ?>">Read more...</a>

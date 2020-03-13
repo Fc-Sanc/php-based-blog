@@ -51,6 +51,11 @@ function htmlEscape($html)
     return htmlspecialchars($html, ENT_HTML5, 'UTF-8');
 }
 
+function getPostHead($html)
+{
+    return substr($html, 0, max(strpos($html, "</"), strpos($html, "\n")));
+}
+
 /**
  * Returns the readable format of a SQL date
  *
@@ -75,11 +80,13 @@ function getSqlDateForNow()
  *
  * @param PDO $pdo
  * @return array
+ * @throws Exception
  */
 function getAllPosts(PDO $pdo)
 {
     $stmt = $pdo->query(
-        'SELECT id, title, created_at, body 
+        'SELECT id, title, created_at, body, 
+       (SELECT COUNT(*) FROM comment WHERE  comment.post_id = post.id) comment_count
       FROM post ORDER BY created_at DESC'
     );
     if ($stmt === false) {
@@ -119,22 +126,6 @@ function redirectAndExit($script)
 }
 
 /**
- * Returns the number of comments for the specified post
- *
- * @param PDO $pdo
- * @param integer $post_id
- * @return integer
- */
-function countCommentsForPost(PDO $pdo, $post_id)
-{
-    $sql = "SELECT COUNT(*) c FROM comment WHERE post_id = :post_id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(array('post_id' => $post_id,));
-
-    return (int)$stmt->fetchColumn();
-}
-
-/**
  * Returns all the comments for the specified post
  *
  * @param PDO $pdo
@@ -153,7 +144,7 @@ function getCommentsForPost(PDO $pdo, $post_id)
 function tryLogin(PDO $pdo, $username, $password)
 {
     $sql = "
-    SELECT password FROM user WHERE username = :username";
+    SELECT password FROM user WHERE username = :username AND is_enabled = 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(
         array('username' => $username)

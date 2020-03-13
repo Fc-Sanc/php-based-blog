@@ -41,14 +41,28 @@ if ($_POST) {
 
         <form method="post">
             <table id="post-list">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Creation date</th>
+                    <th>Comments</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
                 <tbody>
                 <?php foreach ($posts as $post): ?>
                     <tr>
                         <td>
-                            <?php echo htmlEscape($post['title']) ?>
+                            <a href="view_post.php?post_id=<?= $post['id'] ?>">
+                                <?php echo htmlEscape($post['title']) ?>
+                            </a>
                         </td>
                         <td>
                             <?php echo convertSqlDate($post['created_at']) ?>
+                        </td>
+                        <td>
+                            <?php echo $post['comment_count']; ?>
                         </td>
                         <td>
                             <a href="edit_post.php?post_id=<?php echo $post['id'] ?>">Edit</a>
